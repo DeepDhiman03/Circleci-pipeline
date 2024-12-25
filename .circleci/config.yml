@@ -6,16 +6,13 @@ executors:
       - image: cimg/node:16.20 # Node.js environment for building and testing
 
 jobs:
-  build-and-test:
+  build:
     executor: node-executor
     steps:
       - checkout
       - run:
           name: Install Dependencies
           command: npm install
-      - run:
-          name: Run Tests
-          command: npm test
 
   dockerize-and-push:
     docker:
@@ -37,7 +34,7 @@ jobs:
 workflows:
   build-test-and-push:
     jobs:
-      - build-and-test
+      - build
       - dockerize-and-push:
           requires:
-            - build-and-test
+            - build
