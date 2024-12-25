@@ -16,9 +16,6 @@ jobs:
       - run:
           name: Run Tests
           command: npm test
-      - run:
-          name: Build the Application
-          command: npm run build
 
   dockerize-and-push:
     docker:
